@@ -5,23 +5,23 @@ class PinView with ChangeNotifier {
 
   String get pin => _pin;
 
+  String _secondPin = '';
+
+  String get secondPin => _secondPin;
+
   void extendPin(int number) {
     if (_pin.length < 4) {
       _pin += number.toString();
-      print('first pin => ${_pin.length}');
+      print('first pin => ${_pin}');
+      notifyListeners();
     }
-    notifyListeners();
   }
-
-  String _secondPin = '';
-
-  String get secondPin => _pin;
 
   void extendSecondPin(int number) {
     if (_secondPin.length < 4) {
       _secondPin += number.toString();
-      print('second pin => ${_secondPin.length}');
+      print('second pin => ${_secondPin}');
+      notifyListeners();
     }
-    notifyListeners();
   }
 }

@@ -41,26 +41,47 @@ class PinInputWidget extends StatelessWidget {
   Widget _buildDotRow(
     PinView pinView,
   ) {
-    print('------');
-    print(pinView.pin.length);
-    print(pinView.secondPin.length);
     return pinView.pin.length != 4
         ? Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildDotWidget(pinView, pinView.pin.length > 0 ? true : false),
-              _buildDotWidget(pinView, pinView.pin.length > 1 ? true : false),
-              _buildDotWidget(pinView, pinView.pin.length > 2 ? true : false),
-              _buildDotWidget(pinView, pinView.pin.length > 3 ? true : false),
+              _buildDotWidget(
+                pinView,
+                pinView.pin.length > 0 ? true : false,
+              ),
+              _buildDotWidget(
+                pinView,
+                pinView.pin.length > 1 ? true : false,
+              ),
+              _buildDotWidget(
+                pinView,
+                pinView.pin.length > 2 ? true : false,
+              ),
+              _buildDotWidget(
+                pinView,
+                pinView.pin.length > 3 ? true : false,
+              ),
             ],
           )
         : Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildDotWidget(pinView, pinView.secondPin.length > 0 ? true : false),
-              _buildDotWidget(pinView, pinView.secondPin.length > 1 ? true : false),
-              _buildDotWidget(pinView, pinView.secondPin.length > 2 ? true : false),
-              _buildDotWidget(pinView, pinView.secondPin.length > 3 ? true : false),
+              _buildDotWidget(
+                pinView,
+                pinView.secondPin.length > 0 ? true : false,
+              ),
+              _buildDotWidget(
+                pinView,
+                pinView.secondPin.length > 1 ? true : false,
+              ),
+              _buildDotWidget(
+                pinView,
+                pinView.secondPin.length > 2 ? true : false,
+              ),
+              _buildDotWidget(
+                pinView,
+                pinView.secondPin.length > 3 ? true : false,
+              ),
             ],
           );
   }
