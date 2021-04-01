@@ -1,8 +1,19 @@
-import 'package:cake_test_task/HomePage.dart';
+import 'package:cake_test_task/screens/MenuScreen.dart';
+import 'package:cake_test_task/viewmodels/PinView.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<PinView>(
+          create: (_) => PinView(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,8 +21,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: HomePage(),
+      home: MenuScreen(),
     );
   }
 }
