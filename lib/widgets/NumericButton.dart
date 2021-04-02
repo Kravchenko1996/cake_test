@@ -1,4 +1,3 @@
-import 'package:cake_test_task/screens/AuthScreen.dart';
 import 'package:cake_test_task/viewmodels/PinView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,42 +28,32 @@ class NumericButton extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            pinView.pin.length != 4
-                ? pinView.extendPin(number)
-                : pinView.secondPin.length == 4
-                    ? showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return _buildDialog(context);
-                        },
-                      )
-                    : pinView.extendSecondPin(number);
+            if (pinView.toEnter) {
+              pinView.extendFinalPin(
+                number,
+                context,
+              );
+            } else {
+              if (pinView.pin.length != 4) {
+                pinView.extendPin(
+                  number,
+                );
+              } else if (pinView.secondPin.length != 4) {
+                pinView.extendSecondPin(
+                  number,
+                  context,
+                );
+              }
+            }
           },
           child: Text(
             number.toString(),
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(
+              color: Colors.black,
+            ),
           ),
         );
       },
-    );
-  }
-
-  Widget _buildDialog(BuildContext context) {
-    return AlertDialog(
-      content: Text('Your PIN has been set up successfully!'),
-      actions: [
-        FlatButton(
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AuthScreen(),
-            ),
-          ),
-          child: Center(
-            child: Text('OK'),
-          ),
-        ),
-      ],
     );
   }
 }

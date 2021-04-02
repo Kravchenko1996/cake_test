@@ -1,9 +1,11 @@
+import 'package:cake_test_task/screens/AuthScreen.dart';
 import 'package:cake_test_task/screens/CreatePinScreen.dart';
 import 'package:flutter/material.dart';
 
 class MenuScreen extends StatelessWidget {
   final String createPin = 'Create PIN';
   final String auth = 'Authenticate';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +24,11 @@ class MenuScreen extends StatelessWidget {
                 ),
                 _buildButton(
                   auth,
-                  CreatePinScreen(),
+                  AuthScreen(
+                    title: auth,
+                  ),
                   context,
-                )
+                ),
               ],
             ),
           ),
@@ -43,7 +47,9 @@ class MenuScreen extends StatelessWidget {
       color: Colors.lightBlue,
       onPressed: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => route),
+        MaterialPageRoute(
+          builder: (context) => route,
+        ),
       ),
       child: Text(
         title,

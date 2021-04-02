@@ -4,7 +4,7 @@ import 'package:cake_test_task/widgets/PinInputWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CreatePinScreen extends StatelessWidget {
+class CreatePinScreen extends StatefulWidget {
   final String title;
   final String pin;
 
@@ -13,6 +13,21 @@ class CreatePinScreen extends StatelessWidget {
     this.title,
     this.pin,
   }) : super(key: key);
+
+  @override
+  _CreatePinScreenState createState() => _CreatePinScreenState();
+}
+
+class _CreatePinScreenState extends State<CreatePinScreen> {
+  @override
+  void initState() {
+    super.initState();
+    PinView pinView = Provider.of<PinView>(context, listen: false);
+    // reset PIN every time screen is open
+    pinView.setPin = '';
+    pinView.setSecondPin = '';
+    pinView.setToEnter = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +41,7 @@ class CreatePinScreen extends StatelessWidget {
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-              title,
+              'Setup PIN',
             ),
           ),
           body: Column(

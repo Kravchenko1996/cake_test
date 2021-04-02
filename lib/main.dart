@@ -1,7 +1,7 @@
-import 'package:cake_test_task/screens/MenuScreen.dart';
-import 'package:cake_test_task/viewmodels/PinView.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cake_test_task/screens/MenuScreen.dart';
+import 'package:cake_test_task/viewmodels/PinView.dart';
 
 void main() {
   runApp(

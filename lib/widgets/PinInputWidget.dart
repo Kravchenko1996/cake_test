@@ -18,21 +18,26 @@ class PinInputWidget extends StatelessWidget {
         PinView pinView,
         Widget child,
       ) {
-        return Column(
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
-              child: Center(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 20,
+        return Container(
+          height: 70,
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: 15,
+                ),
+                child: Center(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
                   ),
                 ),
               ),
-            ),
-            _buildDotRow(pinView)
-          ],
+              _buildDotRow(pinView)
+            ],
+          ),
         );
       },
     );
@@ -41,49 +46,33 @@ class PinInputWidget extends StatelessWidget {
   Widget _buildDotRow(
     PinView pinView,
   ) {
-    return pinView.pin.length != 4
-        ? Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildDotWidget(
-                pinView,
-                pinView.pin.length > 0 ? true : false,
-              ),
-              _buildDotWidget(
-                pinView,
-                pinView.pin.length > 1 ? true : false,
-              ),
-              _buildDotWidget(
-                pinView,
-                pinView.pin.length > 2 ? true : false,
-              ),
-              _buildDotWidget(
-                pinView,
-                pinView.pin.length > 3 ? true : false,
-              ),
-            ],
-          )
-        : Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildDotWidget(
-                pinView,
-                pinView.secondPin.length > 0 ? true : false,
-              ),
-              _buildDotWidget(
-                pinView,
-                pinView.secondPin.length > 1 ? true : false,
-              ),
-              _buildDotWidget(
-                pinView,
-                pinView.secondPin.length > 2 ? true : false,
-              ),
-              _buildDotWidget(
-                pinView,
-                pinView.secondPin.length > 3 ? true : false,
-              ),
-            ],
-          );
+    return Expanded(
+      child: GridView.count(
+        padding: EdgeInsets.symmetric(horizontal: 90),
+        crossAxisCount: pinView.pinLength,
+        crossAxisSpacing: 20,
+        physics: NeverScrollableScrollPhysics(),
+        children: List.generate(
+          pinView.pinLength,
+          (index) => _buildDotWidget(
+            pinView,
+            pinView.toEnter && pinView.tmpFinalPin.length != pinView.pinLength
+                ? pinView.tmpFinalPin.length > index
+                    ? true
+                    : false
+                : pinView.pin.length != pinView.pinLength
+                    ? pinView.pin.length > index
+                        ? true
+                        : false
+                    : pinView.secondPin.length != pinView.pinLength
+                        ? pinView.secondPin.length > index
+                            ? true
+                            : false
+                        : false,
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildDotWidget(
@@ -92,13 +81,15 @@ class PinInputWidget extends StatelessWidget {
   ) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
-      width: 15,
-      height: 15,
+      width: 10,
+      height: 10,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: active ? Colors.red : Colors.white,
+        color: active ? Colors.lightBlue : Colors.white,
+        border: Border.all(
+          color: Colors.blue,
+        ),
       ),
-      child: Container(),
     );
   }
 }
